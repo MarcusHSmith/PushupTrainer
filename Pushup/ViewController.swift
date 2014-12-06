@@ -80,38 +80,41 @@ class ViewController: UIViewController {
             
             
             //REMOVE Duplicates
-//            var filter = Dictionary<NSDate,Int>()
-//            var len = Workouts.count
-//            for var index = 0; index < len  ;++index {
-//                var value = Workouts[index].date
-//                if (filter[value] != nil) {
-//                    Workouts.removeAtIndex(index--)
-//                    len--
-//                }else{
-//                    filter[value] = 1
-//                    println(Workouts[index].date)
-//                }
-//            }
-            var filter = Dictionary<NSNumber,Int>()
+            var filter = Dictionary<NSDate,Int>()
             var len = Workouts.count
             for var index = 0; index < len  ;++index {
-                var value = Workouts[index].prescribed
+                var value = Workouts[index].date
                 if (filter[value] != nil) {
                     Workouts.removeAtIndex(index--)
                     len--
                 }else{
                     filter[value] = 1
+                    print (Workouts[index].date)
+                    print("   ")
                     println(Workouts[index].accomplished)
-                    
                 }
             }
+//            var filter = Dictionary<NSNumber,Int>()
+//            var len = Workouts.count
+//            for var index = 0; index < len  ;++index {
+//                var value = Workouts[index].prescribed
+//                if (filter[value] != nil) {
+//                    Workouts.removeAtIndex(index--)
+//                    len--
+//                }else{
+//                    filter[value] = 1
+//                    println(Workouts[index].accomplished)
+//                    
+//                }
+//            }
         
         
         }
     }
     
-    func saveNewItem(accomplished: NSNumber, prescribed : NSNumber) {
+    func saveNewItem(accomplished : NSNumber, prescribed : NSNumber) {
         // Create the new  log item
+        println("CREATE NEW ITEM")
         var newLogItem = WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: accomplished, prescribed: prescribed)
 
         self.fetchLog()
@@ -120,7 +123,6 @@ class ViewController: UIViewController {
             let newLogItemPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
             save()
         }
-
     }
     
     func save() {
