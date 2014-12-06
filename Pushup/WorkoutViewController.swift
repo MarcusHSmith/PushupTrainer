@@ -10,9 +10,16 @@ import UIKit
 
 class WorkoutViewController: UIViewController {
 
+    @IBOutlet weak var prescribedPushups: UITextField!
+
+    var prescribed = 0;
+    var accomplished = 0;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        println(prescribed)
+        prescribedPushups.text = String(prescribed)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -27,4 +34,6 @@ class WorkoutViewController: UIViewController {
         self.presentViewController(home, animated: false, completion: nil)
 
     }
+
+    
 }

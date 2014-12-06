@@ -134,6 +134,7 @@ class ViewController: UIViewController {
     @IBAction func WorkoutPressed(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
+        workoutView.prescribed = 11
         self.presentViewController(workoutView, animated: false, completion: nil)
         //self.navigationController?.pushViewController(workoutView, animated: true)
     }

@@ -53,9 +53,17 @@
                                     <action selector="CompletePressed:" destination="Hem-29-Ed0" eventType="touchUpInside" id="dnd-T0-f49"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="prescribed" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7b-l8-ucO">
+                                <rect key="frame" x="246" y="136" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="prescribedPushups" destination="P7b-l8-ucO" id="HDe-R1-DOH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irq-AQ-SYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
