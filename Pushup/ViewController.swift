@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         println(managedObjectContext!)
         fetchLog()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +100,7 @@ class ViewController: UIViewController {
         let unit:NSCalendarUnit = .DayCalendarUnit
         var i = 0
         
-        while (cal.components(.CalendarUnitDay, fromDate: Workouts[i].date, toDate: NSDate(), options: nil).day < 2){
+        while (i < Workouts.count && cal.components(.CalendarUnitDay, fromDate: Workouts[i].date, toDate: NSDate(), options: nil).day < 2){
             if (Int(Workouts[i].accomplished) > Int(lastAccomplished)){
                 lastAccomplished = Int(Workouts[i].accomplished)
                 lastDate = Workouts[i].date
@@ -123,10 +124,13 @@ class ViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
         workoutView.prescribed = scheduler()
-        print("workout prescribed   ")
         println(workoutView.prescribed)
         self.presentViewController(workoutView, animated: false, completion: nil)
         //self.navigationController?.pushViewController(workoutView, animated: true)
     }
+
+
+    
+
 }
 
