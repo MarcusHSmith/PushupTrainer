@@ -8,8 +8,12 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 class ViewController: UIViewController {
+    
+    // BASIC PARAMETERS
+    var starting = 10
     
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
@@ -26,26 +30,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(managedObjectContext!)        
-        
-//        NSDateComponents *twoDays = [[NSDateComponents alloc] init];
-//        twoDays.day = 2;
-//        
-//        NSCalendar *cal = [NSCalendar currentCalendar];
-//        NSDate *inTwoDays = [cal dateByAddingComponents:twoDays
-//        toDate:[NSDate date]
-//        options:0];
-//        
-//        NSLog(@"two days from now: %@", nextDate);
-//        
-//        WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: 20, prescribed: 20)
-//        WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: 17, prescribed: 17)
-//        WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: 14, prescribed: 14)
-//        WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: 11, prescribed: 11)
-//        WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: 8, prescribed: 8)
-
-        //saveNewItem( 69, prescribed: 72)
-
+        println(managedObjectContext!)
         fetchLog()
     }
 
@@ -58,10 +43,8 @@ class ViewController: UIViewController {
         let fetchRequest = NSFetchRequest(entityName: "WorkoutItem")
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [WorkoutItem] {
             let alert = UIAlertView()
-            
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a" // superset of OP's format
-            
             alert.title = "\(dateFormatter.stringFromDate(fetchResults[0].date))"
             alert.message = "\(fetchResults[0].accomplished) pushups accomplished"
             alert.show()
@@ -70,15 +53,10 @@ class ViewController: UIViewController {
 
     func fetchLog() {
         let fetchRequest = NSFetchRequest(entityName: "WorkoutItem")
-    
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [WorkoutItem] {
             Workouts = fetchResults
-            
-            
             //REMOVE Duplicates
             var filter = Dictionary<NSDate,Int>()
             var len = Workouts.count
@@ -89,36 +67,14 @@ class ViewController: UIViewController {
                     len--
                 }else{
                     filter[value] = 1
-                    print (Workouts[index].date)
-                    print("   ")
-                    println(Workouts[index].accomplished)
                 }
             }
-//            var filter = Dictionary<NSNumber,Int>()
-//            var len = Workouts.count
-//            for var index = 0; index < len  ;++index {
-//                var value = Workouts[index].prescribed
-//                if (filter[value] != nil) {
-//                    Workouts.removeAtIndex(index--)
-//                    len--
-//                }else{
-//                    filter[value] = 1
-//                    println(Workouts[index].accomplished)
-//                    
-//                }
-//            }
-        
-        
         }
     }
     
     func saveNewItem(accomplished : NSNumber, prescribed : NSNumber) {
-        // Create the new  log item
-        println("CREATE NEW ITEM")
         var newLogItem = WorkoutItem.createInManagedObjectContext(self.managedObjectContext!, date: NSDate(), accomplished: accomplished, prescribed: prescribed)
-
-        self.fetchLog()
-        
+        fetchLog()
         if let newItemIndex = find(Workouts, newLogItem) {
             let newLogItemPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
             save()
@@ -126,17 +82,49 @@ class ViewController: UIViewController {
     }
     
     func save() {
-        println("SAVING");
         var error : NSError?
         if(managedObjectContext!.save(&error)){
             println(error?.localizedDescription)
         }
     }
-
+    
+    func scheduler() -> Int{
+        println("SCHEDULER")
+        fetchLog()
+        var lastPrescribed: NSNumber = starting
+        var lastAccomplished: NSNumber = starting
+        var lastDate = NSDate()
+        var assigned = 0
+        let cal = NSCalendar.currentCalendar()
+        let unit:NSCalendarUnit = .DayCalendarUnit
+        var i = 0
+        
+        while (cal.components(.CalendarUnitDay, fromDate: Workouts[i].date, toDate: NSDate(), options: nil).day < 2){
+            if (Int(Workouts[i].accomplished) > Int(lastAccomplished)){
+                lastAccomplished = Int(Workouts[i].accomplished)
+                lastDate = Workouts[i].date
+                lastPrescribed = Workouts[i].prescribed
+            } else if (Int(Workouts[i].accomplished) == Int(lastAccomplished)){
+                lastDate = Workouts[i].date
+            }
+            i++
+        }
+        
+        let components = cal.components(.CalendarUnitDay, fromDate: lastDate, toDate: NSDate(), options: nil)
+        println(components)
+        if (components.day > 1){
+            return Int(lastAccomplished) + 3
+        } else {
+            return Int(lastPrescribed)
+        }
+    }
+    
     @IBAction func WorkoutPressed(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
-        workoutView.prescribed = 11
+        workoutView.prescribed = scheduler()
+        print("workout prescribed   ")
+        println(workoutView.prescribed)
         self.presentViewController(workoutView, animated: false, completion: nil)
         //self.navigationController?.pushViewController(workoutView, animated: true)
     }
