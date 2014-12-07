@@ -19,6 +19,12 @@ class WorkoutViewController: ViewController {
     @IBOutlet weak var setThree: UITextField!
     @IBOutlet weak var setFour: UITextField!
     @IBOutlet weak var setFive: UITextField!
+    
+    @IBOutlet weak var buttonOne: UIButton!
+    @IBOutlet weak var buttonTwo: UIButton!
+    @IBOutlet weak var buttonThree: UIButton!
+    @IBOutlet weak var buttonFour: UIButton!
+    @IBOutlet weak var buttonFive: UIButton!
 
     var prescribed = 0;
     var accomplished = 0;
@@ -42,6 +48,28 @@ class WorkoutViewController: ViewController {
         setThree.text = String(three)
         setFour.text = String(four)
         setFive.text = String(five)
+        
+        buttonTwo.hidden = true
+        buttonThree.hidden = true
+        buttonFour.hidden = true
+        buttonFive.hidden = true
+        
+        if (one == 0){
+            buttonOnePressed(self)
+        }
+        if (two == 0){
+            buttonTwoPressed(self)
+        }
+        if (three == 0){
+            buttonThreePressed(self)
+        }
+        if (four == 0){
+            buttonFourPressed(self)
+        }
+        if (five == 0){
+            buttonFivePressed(self)
+        }
+        
     }
     
     func refresh(){
@@ -53,47 +81,52 @@ class WorkoutViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBOutlet weak var buttonOne: UIButton!
+
     @IBAction func buttonOnePressed(sender: AnyObject) {
         if (buttonDone == 0){
             buttonOne.hidden = true
             accomplished += one
             refresh()
             buttonDone += 1
+            buttonTwo.hidden = false
         }
     }
     
-    @IBOutlet weak var buttonTwo: UIButton!
+    
+    
+    
     @IBAction func buttonTwoPressed(sender: AnyObject) {
         if (buttonDone == 1){
             buttonTwo.hidden = true
             accomplished += two
             refresh()
             buttonDone += 1
+            buttonThree.hidden = false
         }
     }
     
-    @IBOutlet weak var buttonThree: UIButton!
     @IBAction func buttonThreePressed(sender: AnyObject) {
         if (buttonDone == 2){
             buttonThree.hidden = true
             accomplished += three
             refresh()
             buttonDone += 1
+            buttonFour.hidden = false
         }
     }
     
-    @IBOutlet weak var buttonFour: UIButton!
+    
     @IBAction func buttonFourPressed(sender: AnyObject) {
         if (buttonDone == 3){
             buttonFour.hidden = true
             accomplished += four
             refresh()
             buttonDone += 1
+            buttonFive.hidden = false
         }
     }
     
-    @IBOutlet weak var buttonFive: UIButton!
+    
     @IBAction func buttonFivePressed(sender: AnyObject) {
         if (buttonDone == 4){
             buttonFive.hidden = true
