@@ -132,7 +132,7 @@ class WorkoutViewController: ViewController {
             buttonFive.hidden = true
             accomplished += five
             refresh()
-            completeWorkout()
+            returnHome()
         }
     }
 
@@ -170,10 +170,10 @@ class WorkoutViewController: ViewController {
     }
     
     @IBAction func CompletePressed(sender: AnyObject) {
-        completeWorkout()
+        returnHome()
     }
     
-    func completeWorkout(){
+    func returnHome(){
         saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     // BASIC PARAMETERS
     var starting = 10
+    var initial = false
     
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
@@ -31,8 +32,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         println(managedObjectContext!)
-        fetchLog()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
+        fetchLog()
+        
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (Workouts.count == 0 && initial == false){
+            let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+            let initialView = storyBoard.instantiateViewControllerWithIdentifier("initialView") as InitialViewController
+            self.presentViewController(initialView, animated: false, completion: nil)
+            saveNewItem(0, prescribed: 0)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,6 +104,8 @@ class ViewController: UIViewController {
     func scheduler() -> Int{
         println("SCHEDULER")
         fetchLog()
+        
+        
         var lastPrescribed: NSNumber = starting
         var lastAccomplished: NSNumber = starting
         var lastDate = NSDate()
@@ -126,7 +140,6 @@ class ViewController: UIViewController {
         workoutView.prescribed = scheduler()
         println(workoutView.prescribed)
         self.presentViewController(workoutView, animated: false, completion: nil)
-        //self.navigationController?.pushViewController(workoutView, animated: true)
     }
 
 
