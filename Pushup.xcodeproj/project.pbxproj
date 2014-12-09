@@ -17,6 +17,8 @@
 		2C81194A1A16DAFD00418BD5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8119481A16DAFD00418BD5 /* LaunchScreen.xib */; };
 		2C8119561A16DAFD00418BD5 /* PushupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8119551A16DAFD00418BD5 /* PushupTests.swift */; };
 		2C8119601A16DC9D00418BD5 /* WorkoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C81195F1A16DC9D00418BD5 /* WorkoutItem.swift */; };
+		2CBAB6E81A36FCD900D1E6F0 /* GO.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CBAB6E61A36FCD900D1E6F0 /* GO.png */; };
+		2CBAB6E91A36FCD900D1E6F0 /* pushupTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CBAB6E71A36FCD900D1E6F0 /* pushupTitle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		2C8119541A16DAFD00418BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8119551A16DAFD00418BD5 /* PushupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushupTests.swift; sourceTree = "<group>"; };
 		2C81195F1A16DC9D00418BD5 /* WorkoutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutItem.swift; sourceTree = "<group>"; };
+		2CBAB6E61A36FCD900D1E6F0 /* GO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GO.png; path = ../../../../Desktop/GO.png; sourceTree = "<group>"; };
+		2CBAB6E71A36FCD900D1E6F0 /* pushupTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pushupTitle.png; path = ../../../../Desktop/pushupTitle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		2C8119391A16DAFC00418BD5 /* Pushup */ = {
 			isa = PBXGroup;
 			children = (
+				2CBAB6E51A36FCCD00D1E6F0 /* Images */,
 				2C81193C1A16DAFC00418BD5 /* AppDelegate.swift */,
 				2C8119411A16DAFD00418BD5 /* ViewController.swift */,
 				2C195CDA1A31ABAF00B4286F /* WorkoutViewController.swift */,
@@ -122,6 +127,15 @@
 				2C8119541A16DAFD00418BD5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CBAB6E51A36FCCD00D1E6F0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2CBAB6E61A36FCD900D1E6F0 /* GO.png */,
+				2CBAB6E71A36FCD900D1E6F0 /* pushupTitle.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,8 +220,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C8119451A16DAFD00418BD5 /* Main.storyboard in Resources */,
+				2CBAB6E91A36FCD900D1E6F0 /* pushupTitle.png in Resources */,
 				2C81194A1A16DAFD00418BD5 /* LaunchScreen.xib in Resources */,
 				2C8119471A16DAFD00418BD5 /* Images.xcassets in Resources */,
+				2CBAB6E81A36FCD900D1E6F0 /* GO.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
