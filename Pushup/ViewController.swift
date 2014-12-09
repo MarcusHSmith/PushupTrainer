@@ -12,10 +12,14 @@ import Foundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var imageTitle: UIImageView!
+    @IBOutlet weak var imageGo: UIButton!
+    
     // BASIC PARAMETERS
     var starting = 10
     var initial = false
     
+
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -29,21 +33,35 @@ class ViewController: UIViewController {
     
     var Workouts = [WorkoutItem]()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         println(managedObjectContext!)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         fetchLog()
         
-
+        println("VIEW DID LOAD")
     }
     
+    
     override func viewDidAppear(animated: Bool) {
+        self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
+        
+        var titleImage = UIImage(named: "pushupTitle")
+        self.imageTitle.image = titleImage
+        
+        var goImage = UIImage(named: "GO")
+        self.imageGo.setBackgroundImage(goImage, forState: .Normal)
+
+        fetchLog()
+        print("WORKOUT COUNT   ")
+        println(Workouts.count)
+        
         if (Workouts.count == 0 && initial == false){
             let storyBoard = UIStoryboard(name: "Main", bundle:nil)
             let initialView = storyBoard.instantiateViewControllerWithIdentifier("initialView") as InitialViewController
             self.presentViewController(initialView, animated: false, completion: nil)
-            saveNewItem(0, prescribed: 0)
         }
     }
 
@@ -140,6 +158,9 @@ class ViewController: UIViewController {
         workoutView.prescribed = scheduler()
         println(workoutView.prescribed)
         self.presentViewController(workoutView, animated: false, completion: nil)
+        
+        
+
     }
 
 

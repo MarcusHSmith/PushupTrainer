@@ -8,10 +8,11 @@
 
 import UIKit
 
-class WorkoutViewController: ViewController {
+class WorkoutViewController: UIViewController {
 
     @IBOutlet weak var prescribedPushups: UITextField!
     @IBOutlet weak var accomplishedPushups: UITextField!
+    @IBOutlet weak var complete: UIButton!
 
     
     @IBOutlet weak var setOne: UITextField!
@@ -26,9 +27,9 @@ class WorkoutViewController: ViewController {
     @IBOutlet weak var buttonFour: UIButton!
     @IBOutlet weak var buttonFive: UIButton!
 
-    var prescribed = 0;
-    var accomplished = 0;
-    var buttonDone = 0;
+    var prescribed = 0
+    var accomplished = 0
+    var buttonDone = 0
     
     var one = 0
     var two = 0
@@ -39,8 +40,11 @@ class WorkoutViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prescribedPushups.text = String(prescribed)
-        accomplishedPushups.text = String(accomplished)
+        self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
+        complete.setTitle("Retreat", forState: UIControlState.Normal)
+        
+        self.prescribedPushups.text = String(prescribed)
+        self.accomplishedPushups.text = String(accomplished)
         
         scheduler(prescribed)
         setOne.text = String(one)
@@ -73,7 +77,7 @@ class WorkoutViewController: ViewController {
     }
     
     func refresh(){
-        accomplishedPushups.text = String(accomplished)
+        self.accomplishedPushups.text = String(accomplished)
     }
 
     override func didReceiveMemoryWarning() {
@@ -174,7 +178,8 @@ class WorkoutViewController: ViewController {
     }
     
     func returnHome(){
-        saveNewItem(accomplished, prescribed: prescribed)
+        var homeView = ViewController()
+        homeView.saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
         self.presentViewController(home, animated: false, completion: nil)

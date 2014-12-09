@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InitialViewController: ViewController {
+class InitialViewController: UIViewController {
 
     var value = 20
     
@@ -23,6 +23,8 @@ class InitialViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
         
         stepper.wraps = false
         stepper.autorepeat = true
@@ -40,6 +42,8 @@ class InitialViewController: ViewController {
     
     func returnToHome(){
         println("DONE")
+        let homeView = ViewController()
+        homeView.saveNewItem(0, prescribed: 0)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
         home.starting = value
