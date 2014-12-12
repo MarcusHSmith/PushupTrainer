@@ -19,8 +19,6 @@ class ViewController: UIViewController {
     var starting = 10
     var initial = false
     
-
-    
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         if let managedObjectContext = appDelegate.managedObjectContext {
@@ -32,16 +30,11 @@ class ViewController: UIViewController {
     } ()
     
     var Workouts = [WorkoutItem]()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(managedObjectContext!)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         fetchLog()
-        
-        println("VIEW DID LOAD")
     }
     
     
@@ -55,8 +48,6 @@ class ViewController: UIViewController {
         self.imageGo.setBackgroundImage(goImage, forState: .Normal)
 
         fetchLog()
-        print("WORKOUT COUNT   ")
-        println(Workouts.count)
         
         if (Workouts.count == 0 && initial == false){
             let storyBoard = UIStoryboard(name: "Main", bundle:nil)
@@ -120,9 +111,7 @@ class ViewController: UIViewController {
     }
     
     func scheduler() -> Int{
-        println("SCHEDULER")
         fetchLog()
-        
         
         var lastPrescribed: NSNumber = starting
         var lastAccomplished: NSNumber = starting
@@ -144,7 +133,6 @@ class ViewController: UIViewController {
         }
         
         let components = cal.components(.CalendarUnitDay, fromDate: lastDate, toDate: NSDate(), options: nil)
-        println(components)
         if (components.day > 1){
             return Int(lastAccomplished) + 3
         } else {
@@ -156,15 +144,7 @@ class ViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
         workoutView.prescribed = scheduler()
-        println(workoutView.prescribed)
         self.presentViewController(workoutView, animated: false, completion: nil)
-        
-        
-
     }
-
-
-    
-
 }
 

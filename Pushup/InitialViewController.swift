@@ -27,6 +27,7 @@ class InitialViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
         
         stepper.wraps = false
+        stepper.minimumValue = 0
         stepper.autorepeat = true
         stepper.value = 20
     }
@@ -41,11 +42,13 @@ class InitialViewController: UIViewController {
     }
     
     func returnToHome(){
-        println("DONE")
         let homeView = ViewController()
         homeView.saveNewItem(0, prescribed: 0)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
+        if (value < 0){
+            value = 0
+        }
         home.starting = value
         home.initial = true
         self.presentViewController(home, animated: false, completion: nil)
