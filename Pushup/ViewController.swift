@@ -146,5 +146,11 @@ class ViewController: UIViewController {
         workoutView.prescribed = scheduler()
         self.presentViewController(workoutView, animated: false, completion: nil)
     }
+    
+    @IBAction func infoPressed(sender: AnyObject) {
+        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+        let infoView = storyBoard.instantiateViewControllerWithIdentifier("infoView") as InfoViewController
+        self.presentViewController(infoView, animated: false, completion: nil)
+    }
 }
 

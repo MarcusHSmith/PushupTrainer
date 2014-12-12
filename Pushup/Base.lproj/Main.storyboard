@@ -81,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eyl-xc-49m">
-                                <rect key="frame" x="16" y="28" width="343" height="183"/>
+                                <rect key="frame" x="16" y="20" width="343" height="183"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eyl-xc-49m" secondAttribute="height" multiplier="343:183" id="Iig-Lx-IcB"/>
                                     <constraint firstAttribute="width" secondItem="eyl-xc-49m" secondAttribute="height" multiplier="343:183" id="koF-P3-QHq"/>
@@ -100,16 +100,36 @@
                                     <action selector="WorkoutPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vaL-jb-dpo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dl-dO-qhC">
+                                <rect key="frame" x="164" y="617" width="30" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pU3-Aw-AOR">
+                                <rect key="frame" x="172" y="617" width="30" height="30"/>
+                                <color key="tintColor" red="0.98431372549999996" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Info">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="infoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8Id-kt-2kp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="pU3-Aw-AOR" secondAttribute="centerX" id="0ZP-2C-BLv"/>
+                            <constraint firstAttribute="centerX" secondItem="pU3-Aw-AOR" secondAttribute="centerX" id="6gX-4n-KHR"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pU3-Aw-AOR" secondAttribute="bottom" constant="20" id="86h-Kf-R9Q"/>
                             <constraint firstItem="7Md-Ze-xdP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eyl-xc-49m" secondAttribute="bottom" priority="999" constant="30" id="AeX-jo-aNR"/>
                             <constraint firstItem="eyl-xc-49m" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Fd8-4E-x0Q"/>
                             <constraint firstItem="eyl-xc-49m" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Tfx-sA-ZCl"/>
                             <constraint firstAttribute="centerY" secondItem="7Md-Ze-xdP" secondAttribute="centerY" id="VsJ-2O-8ZN"/>
                             <constraint firstAttribute="centerX" secondItem="eyl-xc-49m" secondAttribute="centerX" id="XU0-jr-9fN"/>
                             <constraint firstAttribute="centerX" secondItem="7Md-Ze-xdP" secondAttribute="centerX" id="c7F-Cj-aiN"/>
-                            <constraint firstItem="eyl-xc-49m" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="oEB-wu-m3K"/>
+                            <constraint firstItem="eyl-xc-49m" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="oEB-wu-m3K"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pU3-Aw-AOR" secondAttribute="bottom" constant="20" id="s6u-Cb-zDm"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -120,6 +140,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="vKe-A2-EZw">
+            <objects>
+                <viewController storyboardIdentifier="infoView" id="oXT-7S-Qjw" customClass="InfoViewController" customModule="Pushup" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PY3-bz-YAq"/>
+                        <viewControllerLayoutGuide type="bottom" id="4vc-yH-1rD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PGj-wR-ZHE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mfv-qR-6sR">
+                                <rect key="frame" x="16" y="20" width="343" height="183"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Mfv-qR-6sR" secondAttribute="height" multiplier="343:183" id="gMp-OC-Ojc"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Pushup Trainer by Marcus Smith" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9w-hz-NY1">
+                                <rect key="frame" x="16" y="272" width="343" height="278"/>
+                                <color key="tintColor" red="0.98431372549999996" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.98431372549999996" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izx-mx-80G">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <color key="tintColor" red="0.98431372549999996" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnPressed:" destination="oXT-7S-Qjw" eventType="touchUpInside" id="pNS-bC-i5d"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4vc-yH-1rD" firstAttribute="top" secondItem="izx-mx-80G" secondAttribute="bottom" constant="20" id="5pW-dO-zOT"/>
+                            <constraint firstItem="s9w-hz-NY1" firstAttribute="leading" secondItem="PGj-wR-ZHE" secondAttribute="leadingMargin" constant="10" id="LxQ-xk-Rdm"/>
+                            <constraint firstItem="Mfv-qR-6sR" firstAttribute="leading" secondItem="PGj-wR-ZHE" secondAttribute="leadingMargin" id="REk-zC-YSY"/>
+                            <constraint firstAttribute="centerX" secondItem="Mfv-qR-6sR" secondAttribute="centerX" id="Vco-zU-grD"/>
+                            <constraint firstItem="izx-mx-80G" firstAttribute="top" relation="greaterThanOrEqual" secondItem="s9w-hz-NY1" secondAttribute="bottom" constant="10" id="Zyh-uJ-e1c"/>
+                            <constraint firstItem="s9w-hz-NY1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Mfv-qR-6sR" secondAttribute="bottom" constant="10" id="duW-ot-xc8"/>
+                            <constraint firstItem="s9w-hz-NY1" firstAttribute="trailing" secondItem="PGj-wR-ZHE" secondAttribute="trailingMargin" constant="10" id="jqO-PY-AD6"/>
+                            <constraint firstItem="Mfv-qR-6sR" firstAttribute="trailing" secondItem="PGj-wR-ZHE" secondAttribute="trailingMargin" id="l36-WI-nuQ"/>
+                            <constraint firstAttribute="centerX" secondItem="izx-mx-80G" secondAttribute="centerX" id="o1E-Gp-H9v"/>
+                            <constraint firstItem="Mfv-qR-6sR" firstAttribute="top" secondItem="PY3-bz-YAq" secondAttribute="bottom" id="v81-6G-6dt"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imageTitle" destination="Mfv-qR-6sR" id="gra-b5-2vU"/>
+                        <outlet property="infoText" destination="s9w-hz-NY1" id="v06-lB-wS6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awe-za-VTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772.5" y="1034.5"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="xki-DU-5uN">
