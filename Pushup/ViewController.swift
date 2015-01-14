@@ -21,10 +21,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var recentAccomplished: UITextField!
     
     @IBOutlet weak var countDown: UITextField!
+    @IBOutlet weak var pushupsPrescribed: UITextField!
     
     // BASIC PARAMETERS
     var starting = 10
+    var workoutInterval = 48
+    var workoutIncrement = 3
     var initial = false
+    var nextWorkoutPushups = 0
+    var hoursSinceLastWorkout = 0
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -57,6 +62,7 @@ class ViewController: UIViewController {
         maxAccomplished.text = "\(maxWorkout.accomplished)"
         recentAccomplished.text = "\(recentWorkout.accomplished)"
         maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
+        hoursSinceLastWorkout = cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
         var recentTimer = cal.components(.CalendarUnitDay, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).day
         if (recentTimer == 0){
             recentDays.text = "TODAY"
@@ -64,12 +70,17 @@ class ViewController: UIViewController {
             recentDays.text = "\(recentTimer)"
         }
         
-        var timer = 48 - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+        var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
         if (timer <= 0){
             countDown.text = "NOW"
         } else {
             countDown.text = "\(timer)"
         }
+        
+        scheduler(maxWorkout, recent: recentWorkout)
+        pushupsPrescribed.text = "\(nextWorkoutPushups + workoutIncrement)"
+        println("\(nextWorkoutPushups)")
+        println("\(hoursSinceLastWorkout)")
         
     }
     
@@ -146,40 +157,20 @@ class ViewController: UIViewController {
         }
     }
     
-    func scheduler() -> Int{
+    func scheduler(max: WorkoutItem, recent: WorkoutItem){
         fetchLog()
         
-        var lastPrescribed: NSNumber = starting
-        var lastAccomplished: NSNumber = starting
-        var lastDate = NSDate()
-        var assigned = 0
-        let cal = NSCalendar.currentCalendar()
-        let unit:NSCalendarUnit = .DayCalendarUnit
-        var i = 0
+        nextWorkoutPushups = Int(max.accomplished)
         
-        while (i < Workouts.count && cal.components(.CalendarUnitDay, fromDate: Workouts[i].date, toDate: NSDate(), options: nil).day < 2){
-            if (Int(Workouts[i].accomplished) > Int(lastAccomplished)){
-                lastAccomplished = Int(Workouts[i].accomplished)
-                lastDate = Workouts[i].date
-                lastPrescribed = Workouts[i].prescribed
-            } else if (Int(Workouts[i].accomplished) == Int(lastAccomplished)){
-                lastDate = Workouts[i].date
-            }
-            i++
-        }
-        
-        let components = cal.components(.CalendarUnitDay, fromDate: lastDate, toDate: NSDate(), options: nil)
-        if (components.day > 1){
-            return Int(lastAccomplished) + 3
-        } else {
-            return Int(lastPrescribed)
+        if (hoursSinceLastWorkout > workoutInterval){
+            nextWorkoutPushups += workoutIncrement
         }
     }
     
     @IBAction func WorkoutPressed(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
-        workoutView.prescribed = scheduler()
+        workoutView.prescribed = nextWorkoutPushups
         self.presentViewController(workoutView, animated: false, completion: nil)
     }
     

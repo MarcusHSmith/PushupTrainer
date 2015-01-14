@@ -170,6 +170,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="nextWorkout" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-ke-h1i">
+                                <rect key="frame" x="219" y="596" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pushups in Next Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-RT-deo">
+                                <rect key="frame" x="16" y="600" width="195" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3I6-De-W4L">
                                 <rect key="frame" x="219" y="558" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -198,6 +209,7 @@
                         <outlet property="imageTitle" destination="eyl-xc-49m" id="u4T-K9-HIO"/>
                         <outlet property="maxAccomplished" destination="yRl-ir-sQF" id="Q5u-AF-6Mc"/>
                         <outlet property="maxDays" destination="Eh8-sw-9yb" id="EMJ-yd-8G3"/>
+                        <outlet property="pushupsPrescribed" destination="1QI-ke-h1i" id="Ov3-o5-17h"/>
                         <outlet property="recentAccomplished" destination="xLD-NK-AfM" id="408-6o-6Sg"/>
                         <outlet property="recentDays" destination="oPr-4J-2A9" id="9wO-OH-BIV"/>
                     </connections>
