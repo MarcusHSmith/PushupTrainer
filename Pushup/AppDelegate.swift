@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        scheduleNotification()
+        //scheduleNotification()
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -116,24 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let types = UIUserNotificationType.Alert | UIUserNotificationType.Sound
         let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-    }
-    
-    func scheduleNotification() {
-        if UIApplication.sharedApplication().scheduledLocalNotifications.count == 0 {
-            let notification = UILocalNotification()
-            notification.alertBody = "Hey! Time to Workout"
-            notification.soundName = UILocalNotificationDefaultSoundName
-            notification.fireDate = addHours(NSDate(), additionalHours: 48)
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        }
-    }
-    
-    func addHours(date: NSDate, additionalHours: Int) -> NSDate {
-        var components = NSDateComponents()
-        components.hour = additionalHours
-        let futureDate = NSCalendar.currentCalendar()
-            .dateByAddingComponents(components, toDate: date, options: NSCalendarOptions(0))
-        return futureDate!
     }
 }
 

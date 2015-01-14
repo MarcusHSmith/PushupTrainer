@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         fetchLog()
         
         // Homescreen USER Statistics
@@ -85,9 +85,6 @@ class ViewController: UIViewController {
         
         scheduler(maxWorkout, recent: recentWorkout)
         pushupsPrescribed.text = "\(nextWorkoutPushups + workoutIncrement)"
-        println("\(nextWorkoutPushups)")
-        println("\(hoursSinceLastWorkout)")
-        
     }
     
     

@@ -184,10 +184,12 @@ class WorkoutViewController: UIViewController {
     }
     
     @IBAction func CompletePressed(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         returnHome()
     }
     
     func returnHome(){
+        scheduleNotification()
         var homeView = ViewController()
         homeView.saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
@@ -195,4 +197,21 @@ class WorkoutViewController: UIViewController {
         self.presentViewController(home, animated: false, completion: nil)
     }
     
+    func scheduleNotification() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let notification = UILocalNotification()
+        notification.alertBody = "Hey! Time to Workout"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.fireDate = addHours(NSDate(), additionalHours: 48)
+        notification.repeatInterval = NSCalendarUnit.CalendarUnitDay
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func addHours(date: NSDate, additionalHours: Int) -> NSDate {
+        var components = NSDateComponents()
+        components.hour = additionalHours
+        let futureDate = NSCalendar.currentCalendar()
+            .dateByAddingComponents(components, toDate: date, options: NSCalendarOptions(0))
+        return futureDate!
+    }
 }
