@@ -69,6 +69,12 @@ class ViewController: UIViewController {
         } else {
             recentDays.text = "\(recentTimer)"
         }
+        var maxTimer = cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day
+        if (maxTimer == 0){
+            maxDays.text = "TODAY"
+        } else {
+            maxDays.text = "\(maxTimer)"
+        }
         
         var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
         if (timer <= 0){
