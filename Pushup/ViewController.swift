@@ -15,6 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageTitle: UIImageView!
     @IBOutlet weak var imageGo: UIButton!
     
+    @IBOutlet weak var maxDays: UITextField!
+    @IBOutlet weak var maxAccomplished: UITextField!
+    @IBOutlet weak var recentDays: UITextField!
+    @IBOutlet weak var recentAccomplished: UITextField!
+    
+    @IBOutlet weak var countDown: UITextField!
+    
     // BASIC PARAMETERS
     var starting = 10
     var initial = false
@@ -35,6 +42,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         fetchLog()
+        
+        // Homescreen USER Statistics
+        var recentWorkout: WorkoutItem = Workouts[0]
+        var maxWorkout: WorkoutItem = recentWorkout
+        var userMax: NSNumber = 0
+        for day in Workouts {
+            if (Int(day.accomplished) > Int(userMax)) {
+                userMax = day.accomplished
+                maxWorkout = day
+            }
+        }
+        let cal = NSCalendar.currentCalendar()
+        maxAccomplished.text = "\(maxWorkout.accomplished)"
+        recentAccomplished.text = "\(recentWorkout.accomplished)"
+        maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
+        var recentTimer = cal.components(.CalendarUnitDay, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).day
+        if (recentTimer == 0){
+            recentDays.text = "TODAY"
+        } else {
+            recentDays.text = "\(recentTimer)"
+        }
+        
+        var timer = 48 - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+        if (timer <= 0){
+            countDown.text = "NOW"
+        } else {
+            countDown.text = "\(timer)"
+        }
+        
     }
     
     

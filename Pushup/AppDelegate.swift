@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let notification = UILocalNotification()
             notification.alertBody = "Hey! Time to Workout"
             notification.soundName = UILocalNotificationDefaultSoundName
-            notification.fireDate = addHours(NSDate(), additionalHours: 47)
+            notification.fireDate = addHours(NSDate(), additionalHours: 48)
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
     }

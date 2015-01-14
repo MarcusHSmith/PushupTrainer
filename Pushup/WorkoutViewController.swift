@@ -47,6 +47,16 @@ class WorkoutViewController: UIViewController {
         self.accomplishedPushups.text = String(accomplished)
         
         scheduler(prescribed)
+        
+        // shift right by one set if flux is zero
+        if (five == 0) {
+            five = four
+            four = three
+            three = two
+            two = one
+            one = 0
+        }
+        
         setOne.text = String(one)
         setTwo.text = String(two)
         setThree.text = String(three)
