@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class WorkoutViewController: UIViewController {
 
@@ -27,6 +28,11 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var buttonFour: UIButton!
     @IBOutlet weak var buttonFive: UIButton!
 
+    
+    var healthManager:HealthManager?
+    var workouts = [HKWorkout]()
+    var startDate = NSDate()
+    
     var prescribed = 0
     var accomplished = 0
     var buttonDone = 0
@@ -83,7 +89,6 @@ class WorkoutViewController: UIViewController {
         if (five == 0){
             buttonFivePressed(self)
         }
-        
     }
     
     func refresh(){
@@ -95,7 +100,6 @@ class WorkoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
     @IBAction func buttonOnePressed(sender: AnyObject) {
         if (buttonDone == 0){
             buttonOne.hidden = true
@@ -105,9 +109,6 @@ class WorkoutViewController: UIViewController {
             buttonTwo.hidden = false
         }
     }
-    
-    
-    
     
     @IBAction func buttonTwoPressed(sender: AnyObject) {
         if (buttonDone == 1){
@@ -129,7 +130,6 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    
     @IBAction func buttonFourPressed(sender: AnyObject) {
         if (buttonDone == 3){
             buttonFour.hidden = true
@@ -139,7 +139,6 @@ class WorkoutViewController: UIViewController {
             buttonFive.hidden = false
         }
     }
-    
     
     @IBAction func buttonFivePressed(sender: AnyObject) {
         if (buttonDone == 4){
@@ -189,12 +188,34 @@ class WorkoutViewController: UIViewController {
     }
     
     func returnHome(){
+        // kiloCalories can't be set to nil ???
+        self.healthManager?.savePushupWorkout(startDate, endDate: NSDate(), pushups: Double(accomplished), kiloCalories: 100, completion: { (success, error ) -> Void in
+            if( success ) {
+                println("Workout saved!")
+            } else if ( error != nil ) {
+                println("\(error)")
+            }
+        })
         scheduleNotification()
         var homeView = ViewController()
         homeView.saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
         self.presentViewController(home, animated: false, completion: nil)
+    }
+    
+    func readHealthKitData() {
+        healthManager?.readPushupWorkOuts({ (results, error) -> Void in
+            if( error != nil )
+            {
+                println("Error reading workouts: \(error.localizedDescription)")
+                return;
+            }
+            else
+            {
+                println("Workouts read successfully!  \(results)")
+            }
+        })
     }
     
     func scheduleNotification() {

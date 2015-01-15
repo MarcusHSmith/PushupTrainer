@@ -32,6 +32,8 @@
 		2C8540CD1A662768008AE650 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8540BA1A662768008AE650 /* Icon.png */; };
 		2C8540CE1A662768008AE650 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8540BB1A662768008AE650 /* Icon@2x.png */; };
 		2C8540D01A662768008AE650 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8540BE1A662768008AE650 /* iTunesArtwork@2x.png */; };
+		2C8540D21A67267D008AE650 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8540D11A67267D008AE650 /* HealthKit.framework */; };
+		2C8540D81A67276B008AE650 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8540D71A67276B008AE650 /* HealthManager.swift */; };
 		2C8F59A51A3B0B4B009354E5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F59A41A3B0B4B009354E5 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,9 @@
 		2C8540BA1A662768008AE650 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		2C8540BB1A662768008AE650 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2C8540BE1A662768008AE650 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		2C8540D11A67267D008AE650 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		2C8540D31A67267D008AE650 /* Pushup.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pushup.entitlements; sourceTree = "<group>"; };
+		2C8540D71A67276B008AE650 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		2C8F59A41A3B0B4B009354E5 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C8540D21A67267D008AE650 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,7 @@
 		2C81192E1A16DAFC00418BD5 = {
 			isa = PBXGroup;
 			children = (
+				2C8540D11A67267D008AE650 /* HealthKit.framework */,
 				2C8119391A16DAFC00418BD5 /* Pushup */,
 				2C8119521A16DAFD00418BD5 /* PushupTests */,
 				2C8119381A16DAFC00418BD5 /* Products */,
@@ -130,8 +137,10 @@
 		2C8119391A16DAFC00418BD5 /* Pushup */ = {
 			isa = PBXGroup;
 			children = (
+				2C8540D31A67267D008AE650 /* Pushup.entitlements */,
 				2CBAB6E51A36FCCD00D1E6F0 /* Images */,
 				2C81193C1A16DAFC00418BD5 /* AppDelegate.swift */,
+				2C8540D71A67276B008AE650 /* HealthManager.swift */,
 				2C8119411A16DAFD00418BD5 /* ViewController.swift */,
 				2C195CDA1A31ABAF00B4286F /* WorkoutViewController.swift */,
 				2C6AA0681A342E4400BA042A /* InitialViewController.swift */,
@@ -284,6 +293,11 @@
 					2C8119361A16DAFC00418BD5 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 9EBDBA4ZC3;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					2C81194E1A16DAFD00418BD5 = {
 						CreatedOnToolsVersion = 6.1;
@@ -357,6 +371,7 @@
 				2C6AA0691A342E4400BA042A /* InitialViewController.swift in Sources */,
 				2C8119601A16DC9D00418BD5 /* WorkoutItem.swift in Sources */,
 				2C81193D1A16DAFC00418BD5 /* AppDelegate.swift in Sources */,
+				2C8540D81A67276B008AE650 /* HealthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pushup/Pushup.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Pushup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -491,6 +507,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pushup/Pushup.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Pushup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

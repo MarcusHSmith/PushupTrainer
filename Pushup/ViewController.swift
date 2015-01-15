@@ -14,21 +14,21 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageTitle: UIImageView!
     @IBOutlet weak var imageGo: UIButton!
-    
     @IBOutlet weak var maxDays: UITextField!
     @IBOutlet weak var maxAccomplished: UITextField!
     @IBOutlet weak var recentDays: UITextField!
     @IBOutlet weak var recentAccomplished: UITextField!
-    
     @IBOutlet weak var countDown: UITextField!
     @IBOutlet weak var pushupsPrescribed: UITextField!
     
+    var Workouts = [WorkoutItem]()
+    let healthManager:HealthManager = HealthManager()
+    
     // BASIC PARAMETERS
-    var starting = 10
     var workoutInterval = 48
     var workoutIncrement = 3
     var initial = false
-    var nextWorkoutPushups = 0
+    var maxWorkoutPushups = 0
     var hoursSinceLastWorkout = 0
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
@@ -40,75 +40,68 @@ class ViewController: UIViewController {
             return nil
         }
     } ()
-    
-    var Workouts = [WorkoutItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
         fetchLog()
-        
-        // Homescreen USER Statistics
-        var recentWorkout: WorkoutItem = Workouts[0]
-        var maxWorkout: WorkoutItem = recentWorkout
-        var userMax: NSNumber = 0
-        for day in Workouts {
-            if (Int(day.accomplished) > Int(userMax)) {
-                userMax = day.accomplished
-                maxWorkout = day
-            }
-        }
-        let cal = NSCalendar.currentCalendar()
-        maxAccomplished.text = "\(maxWorkout.accomplished)"
-        recentAccomplished.text = "\(recentWorkout.accomplished)"
-        maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
-        hoursSinceLastWorkout = cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
-        var recentTimer = cal.components(.CalendarUnitDay, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).day
-        if (recentTimer == 0){
-            recentDays.text = "TODAY"
-        } else {
-            recentDays.text = "\(recentTimer)"
-        }
-        var maxTimer = cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day
-        if (maxTimer == 0){
-            maxDays.text = "TODAY"
-        } else {
-            maxDays.text = "\(maxTimer)"
-        }
-        
-        var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
-        if (timer <= 0){
-            countDown.text = "NOW"
-        } else {
-            countDown.text = "\(timer)"
-        }
-        
-        scheduler(maxWorkout, recent: recentWorkout)
-        pushupsPrescribed.text = "\(nextWorkoutPushups + workoutIncrement)"
     }
     
     
     override func viewDidAppear(animated: Bool) {
+        // Home Screen UI
         self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
-        
         var titleImage = UIImage(named: "pushupTitle")
         self.imageTitle.image = titleImage
-        
         var goImage = UIImage(named: "GO")
         self.imageGo.setBackgroundImage(goImage, forState: .Normal)
-
-        fetchLog()
         
+        fetchLog()
         if (Workouts.count == 0 && initial == false){
+            // Initial Application Launch
             let storyBoard = UIStoryboard(name: "Main", bundle:nil)
             let initialView = storyBoard.instantiateViewControllerWithIdentifier("initialView") as InitialViewController
             self.presentViewController(initialView, animated: false, completion: nil)
+        } else {
+            // Homescreen USER Statistics
+            var recentWorkout: WorkoutItem = Workouts[0]
+            var maxWorkout: WorkoutItem = recentWorkout
+            var userMax: NSNumber = 0
+            for day in Workouts {
+                if (Int(day.accomplished) > Int(userMax)) {
+                    userMax = day.accomplished
+                    maxWorkout = day
+                }
+            }
+            let cal = NSCalendar.currentCalendar()
+            maxAccomplished.text = "\(maxWorkout.accomplished)"
+            recentAccomplished.text = "\(recentWorkout.accomplished)"
+            maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
+            hoursSinceLastWorkout = cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+            var recentTimer = cal.components(.CalendarUnitDay, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).day
+            if (recentTimer == 0) {
+                recentDays.text = "TODAY"
+            } else {
+                recentDays.text = "\(recentTimer)"
+            }
+            var maxTimer = cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day
+            if (maxTimer == 0) {
+                maxDays.text = "TODAY"
+            } else {
+                maxDays.text = "\(maxTimer)"
+            }
+            var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+            if (timer <= 0) {
+                countDown.text = "NOW"
+            } else {
+                countDown.text = "\(timer)"
+            }
+            pushupsPrescribed.text = "\(maxWorkoutPushups + workoutIncrement)"
+            authorizeHealthKit()
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func presentItemInfo() {
@@ -134,6 +127,7 @@ class ViewController: UIViewController {
             var len = Workouts.count
             for var index = 0; index < len  ;++index {
                 var value = Workouts[index].date
+                maxWorkoutPushups = max(Int(Workouts[index].accomplished) , maxWorkoutPushups)
                 if (filter[value] != nil) {
                     Workouts.removeAtIndex(index--)
                     len--
@@ -155,25 +149,26 @@ class ViewController: UIViewController {
     
     func save() {
         var error : NSError?
+        // printing nil for some reason
         if(managedObjectContext!.save(&error)){
             println(error?.localizedDescription)
         }
     }
     
-    func scheduler(max: WorkoutItem, recent: WorkoutItem){
+    func scheduler() -> Int {
         fetchLog()
-        
-        nextWorkoutPushups = Int(max.accomplished)
-        
         if (hoursSinceLastWorkout > workoutInterval){
-            nextWorkoutPushups += workoutIncrement
+            return maxWorkoutPushups + workoutIncrement
+        } else {
+            return maxWorkoutPushups
         }
     }
     
     @IBAction func WorkoutPressed(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let workoutView = storyBoard.instantiateViewControllerWithIdentifier("workoutView") as WorkoutViewController
-        workoutView.prescribed = nextWorkoutPushups
+        workoutView.prescribed = scheduler()
+        workoutView.healthManager = healthManager
         self.presentViewController(workoutView, animated: false, completion: nil)
     }
     
@@ -182,5 +177,19 @@ class ViewController: UIViewController {
         let infoView = storyBoard.instantiateViewControllerWithIdentifier("infoView") as InfoViewController
         self.presentViewController(infoView, animated: false, completion: nil)
     }
+    
+    func authorizeHealthKit() {
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                println("HealthKit authorization received.")
+            }
+            else
+            {
+                println("HealthKit authorization denied!")
+                if error != nil {
+                    println("\(error)")
+                }
+            }
+        }
+    }
 }
-

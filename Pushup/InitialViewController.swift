@@ -14,13 +14,11 @@ class InitialViewController: UIViewController {
     
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
-    
     @IBAction func stepperValueChanged(sender: UIStepper) {
         valueLabel.text = Int(sender.value).description
         value = Int(sender.value)
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,15 +41,14 @@ class InitialViewController: UIViewController {
     
     func returnToHome(){
         let homeView = ViewController()
-        homeView.saveNewItem(0, prescribed: 0)
+        homeView.saveNewItem(value, prescribed: value)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
         if (value < 0){
             value = 0
         }
-        home.starting = value
+        home.maxWorkoutPushups = value
         home.initial = true
         self.presentViewController(home, animated: false, completion: nil)
     }
-
 }
