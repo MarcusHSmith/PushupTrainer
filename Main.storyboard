@@ -111,23 +111,39 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="maxDays" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eh8-sw-9yb">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="maxDays" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eh8-sw-9yb">
                                 <rect key="frame" x="105" y="463" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="recentDays" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPr-4J-2A9">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="recentDays" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPr-4J-2A9">
                                 <rect key="frame" x="219" y="463" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="maxAccomplished" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRl-ir-sQF">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="maxAccomplished" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRl-ir-sQF">
                                 <rect key="frame" x="105" y="501" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="recentAccomplished" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLD-NK-AfM">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="recentAccomplished" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLD-NK-AfM">
                                 <rect key="frame" x="219" y="501" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -162,25 +178,33 @@
                                     <action selector="infoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8Id-kt-2kp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours until Next Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0y-RL-6d2">
-                                <rect key="frame" x="16" y="545" width="192.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hours until Next Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0y-RL-6d2">
+                                <rect key="frame" x="16" y="545" width="193" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="nextWorkout" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-ke-h1i">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="nextWorkout" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-ke-h1i">
                                 <rect key="frame" x="219" y="579" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pushups in Next Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-RT-deo">
-                                <rect key="frame" x="16" y="583" width="195" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pushups in Next Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-RT-deo">
+                                <rect key="frame" x="16" y="583" width="195" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3I6-De-W4L">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3I6-De-W4L">
                                 <rect key="frame" x="219" y="541" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -197,6 +221,7 @@
                             <constraint firstAttribute="centerX" secondItem="pU3-Aw-AOR" secondAttribute="centerX" id="0ZP-2C-BLv"/>
                             <constraint firstItem="1QI-ke-h1i" firstAttribute="leading" secondItem="Nee-RT-deo" secondAttribute="trailing" constant="8" id="0p1-2P-sbQ"/>
                             <constraint firstItem="xLD-NK-AfM" firstAttribute="leading" secondItem="yRl-ir-sQF" secondAttribute="trailing" constant="17" id="1wM-A9-G9q"/>
+                            <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="3I6-De-W4L" secondAttribute="width" id="5hG-Jn-vGb"/>
                             <constraint firstAttribute="centerX" secondItem="pU3-Aw-AOR" secondAttribute="centerX" id="6gX-4n-KHR"/>
                             <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="yRl-ir-sQF" secondAttribute="width" id="7tH-7W-jx2"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pU3-Aw-AOR" secondAttribute="bottom" constant="20" id="86h-Kf-R9Q"/>
@@ -233,9 +258,11 @@
                             <constraint firstItem="eyl-xc-49m" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="oEB-wu-m3K"/>
                             <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="Eh8-sw-9yb" secondAttribute="width" id="orx-N6-S8o"/>
                             <constraint firstItem="7Md-Ze-xdP" firstAttribute="top" secondItem="eyl-xc-49m" secondAttribute="bottom" constant="10" id="p7k-UL-U8w"/>
+                            <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="1QI-ke-h1i" secondAttribute="width" id="pTK-c6-shw"/>
                             <constraint firstItem="yRl-ir-sQF" firstAttribute="leading" secondItem="dn9-rX-iKS" secondAttribute="trailing" constant="22" id="pXx-dr-s2c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3I6-De-W4L" secondAttribute="trailing" constant="10" id="q6V-V6-5RR"/>
                             <constraint firstItem="3I6-De-W4L" firstAttribute="top" secondItem="xLD-NK-AfM" secondAttribute="bottom" constant="10" id="qO9-r0-shF"/>
+                            <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="xLD-NK-AfM" secondAttribute="width" id="rgM-27-ixP"/>
                             <constraint firstItem="Eh8-sw-9yb" firstAttribute="centerX" secondItem="ItB-GV-km6" secondAttribute="centerX" id="rtH-wn-ZY6"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pU3-Aw-AOR" secondAttribute="bottom" constant="20" id="s6u-Cb-zDm"/>
                             <constraint firstItem="e0y-RL-6d2" firstAttribute="top" secondItem="dn9-rX-iKS" secondAttribute="bottom" constant="19" id="sKt-bI-omM"/>
@@ -551,4 +578,5 @@
             <point key="canvasLocation" x="1309.5" y="351.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
