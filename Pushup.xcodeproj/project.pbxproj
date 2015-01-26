@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0EC50F1A75D85600D0FCD7 /* pushupTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0EC50B1A75D85600D0FCD7 /* pushupTitle.png */; };
+		2C0EC5111A75D85600D0FCD7 /* WorkoutNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0EC50D1A75D85600D0FCD7 /* WorkoutNow.png */; };
 		2C195CDB1A31ABAF00B4286F /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195CDA1A31ABAF00B4286F /* WorkoutViewController.swift */; };
 		2C484EBB1A43D03900BF2E63 /* GO.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C484EB91A43D03900BF2E63 /* GO.png */; };
-		2C484EBC1A43D03900BF2E63 /* pushupTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C484EBA1A43D03900BF2E63 /* pushupTitle.png */; };
 		2C6AA0691A342E4400BA042A /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6AA0681A342E4400BA042A /* InitialViewController.swift */; };
 		2C81193D1A16DAFC00418BD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C81193C1A16DAFC00418BD5 /* AppDelegate.swift */; };
 		2C8119401A16DAFD00418BD5 /* Pushup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C81193E1A16DAFD00418BD5 /* Pushup.xcdatamodeld */; };
@@ -55,9 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0EC50B1A75D85600D0FCD7 /* pushupTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pushupTitle.png; path = "Images-2.xcassets/pushupTitle.png"; sourceTree = "<group>"; };
+		2C0EC50D1A75D85600D0FCD7 /* WorkoutNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WorkoutNow.png; path = "Images-2.xcassets/WorkoutNow.png"; sourceTree = "<group>"; };
 		2C195CDA1A31ABAF00B4286F /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		2C484EB91A43D03900BF2E63 /* GO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GO.png; path = Pushup/GO.png; sourceTree = SOURCE_ROOT; };
-		2C484EBA1A43D03900BF2E63 /* pushupTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pushupTitle.png; path = Pushup/pushupTitle.png; sourceTree = SOURCE_ROOT; };
 		2C6AA0681A342E4400BA042A /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2C8119371A16DAFC00418BD5 /* Pushup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pushup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C81193B1A16DAFC00418BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,9 +213,10 @@
 		2CBAB6E51A36FCCD00D1E6F0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2C0EC50B1A75D85600D0FCD7 /* pushupTitle.png */,
+				2C0EC50D1A75D85600D0FCD7 /* WorkoutNow.png */,
 				2C85410E1A684F4D008AE650 /* App Icon [Squared] */,
 				2C484EB91A43D03900BF2E63 /* GO.png */,
-				2C484EBA1A43D03900BF2E63 /* pushupTitle.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -312,9 +315,9 @@
 				2C85412E1A684F4D008AE650 /* Icon-Small@2x.png in Resources */,
 				2C85412C1A684F4D008AE650 /* Icon-Small-50@2x.png in Resources */,
 				2C8541481A6851EE008AE650 /* LaunchScreen.xib in Resources */,
-				2C484EBC1A43D03900BF2E63 /* pushupTitle.png in Resources */,
 				2C8541311A684F4D008AE650 /* Icon@2x.png in Resources */,
 				2C8541251A684F4D008AE650 /* Icon-72@2x.png in Resources */,
+				2C0EC5111A75D85600D0FCD7 /* WorkoutNow.png in Resources */,
 				2C85413C1A6850D1008AE650 /* Images-2.xcassets in Resources */,
 				2C8541291A684F4D008AE650 /* Icon-Small-40@2x.png in Resources */,
 				2C85412B1A684F4D008AE650 /* Icon-Small-50.png in Resources */,
@@ -325,6 +328,7 @@
 				2C8541261A684F4D008AE650 /* Icon-76.png in Resources */,
 				2C8541221A684F4D008AE650 /* Icon-60@2x.png in Resources */,
 				2C8541271A684F4D008AE650 /* Icon-76@2x.png in Resources */,
+				2C0EC50F1A75D85600D0FCD7 /* pushupTitle.png in Resources */,
 				2C484EBB1A43D03900BF2E63 /* GO.png in Resources */,
 				2C85412F1A684F4D008AE650 /* Icon-Small@3x.png in Resources */,
 				2C8541281A684F4D008AE650 /* Icon-Small-40.png in Resources */,

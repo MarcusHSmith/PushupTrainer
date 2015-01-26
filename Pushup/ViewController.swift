@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 35/225, green: 35/225, blue: 35/225, alpha: 1)
         var titleImage = UIImage(named: "pushupTitle")
         self.imageTitle.image = titleImage
-        var goImage = UIImage(named: "GO")
+        var goImage = UIImage(named: "WorkoutNow")
         self.imageGo.setBackgroundImage(goImage, forState: .Normal)
         
         fetchLog()
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
             } else {
                 maxDays.text = "\(maxTimer)"
             }
-            var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+            var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).hour
             if (timer <= 0) {
                 countDown.text = "NOW"
             } else {
