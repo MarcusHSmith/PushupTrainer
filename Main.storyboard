@@ -86,12 +86,6 @@
                                     <constraint firstAttribute="width" secondItem="eyl-xc-49m" secondAttribute="height" multiplier="853:319" id="Iig-Lx-IcB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dl-dO-qhC">
-                                <rect key="frame" x="164" y="617" width="30" height="30"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="maxDays" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eh8-sw-9yb">
                                 <rect key="frame" x="105" y="463" width="97" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -214,6 +208,12 @@
                                     <action selector="WorkoutPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vaL-jb-dpo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dl-dO-qhC">
+                                <rect key="frame" x="172" y="617" width="30" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -271,6 +271,12 @@
                             <constraint firstItem="dn9-rX-iKS" firstAttribute="top" secondItem="PhH-G3-d5b" secondAttribute="bottom" constant="17" id="x1y-De-Yvl"/>
                             <constraint firstItem="oPr-4J-2A9" firstAttribute="width" secondItem="ItB-GV-km6" secondAttribute="width" id="znx-qr-2Y3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6gX-4n-KHR"/>
+                                <exclude reference="86h-Kf-R9Q"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>

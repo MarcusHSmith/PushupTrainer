@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             var maxWorkout: WorkoutItem = recentWorkout
             var userMax: NSNumber = 0
             for day in Workouts {
-                if (Int(day.accomplished) > Int(userMax)) {
+                if (Int(day.accomplished) >= Int(userMax)) {
                     userMax = day.accomplished
                     maxWorkout = day
                 }
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             maxAccomplished.text = "\(maxWorkout.accomplished)"
             recentAccomplished.text = "\(recentWorkout.accomplished)"
             maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
-            hoursSinceLastWorkout = cal.components(.CalendarUnitHour, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).hour
+            hoursSinceLastWorkout = cal.components(.CalendarUnitHour, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).hour
             var recentTimer = cal.components(.CalendarUnitDay, fromDate: recentWorkout.date, toDate: NSDate(), options: nil).day
             if (recentTimer == 0) {
                 recentDays.text = "TODAY"

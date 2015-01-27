@@ -196,8 +196,11 @@ class WorkoutViewController: UIViewController {
                 println("\(error)")
             }
         })
-        scheduleNotification()
         var homeView = ViewController()
+        homeView.fetchLog()
+        if (homeView.maxWorkoutPushups < accomplished){
+            scheduleNotification()
+        }
         homeView.saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
@@ -223,7 +226,7 @@ class WorkoutViewController: UIViewController {
         let notification = UILocalNotification()
         notification.alertBody = "Hey! Time to Workout"
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.fireDate = addHours(NSDate(), additionalHours: 48)
+        notification.fireDate = addHours(NSDate(), additionalHours: 46)
         notification.repeatInterval = NSCalendarUnit.CalendarUnitDay
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
