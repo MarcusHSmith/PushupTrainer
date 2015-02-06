@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     
     var Workouts = [WorkoutItem]()
     let healthManager:HealthManager = HealthManager()
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let cal = NSCalendar.currentCalendar()
     
     // BASIC PARAMETERS
     var workoutInterval = 48
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
     var initial = false
     var maxWorkoutPushups = 0
     var hoursSinceLastWorkout = 0
+    var nextWorkoutDate = NSDate()
     
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -58,11 +61,18 @@ class ViewController: UIViewController {
         fetchLog()
         if (Workouts.count == 0 && initial == false){
             // Initial Application Launch
+
+            defaults.setObject(NSDate(), forKey: "nextWorkoutDate")
+            
             let storyBoard = UIStoryboard(name: "Main", bundle:nil)
             let initialView = storyBoard.instantiateViewControllerWithIdentifier("initialView") as InitialViewController
             self.presentViewController(initialView, animated: false, completion: nil)
         } else {
             // Homescreen USER Statistics
+            if let next: AnyObject = defaults.objectForKey("nextWorkoutDate"){
+                nextWorkoutDate = next as NSDate
+            }
+            println("Next workout on  \(nextWorkoutDate)")
             var recentWorkout: WorkoutItem = Workouts[0]
             var maxWorkout: WorkoutItem = recentWorkout
             var userMax: NSNumber = 0
@@ -72,7 +82,7 @@ class ViewController: UIViewController {
                     maxWorkout = day
                 }
             }
-            let cal = NSCalendar.currentCalendar()
+            
             maxAccomplished.text = "\(maxWorkout.accomplished)"
             recentAccomplished.text = "\(recentWorkout.accomplished)"
             maxDays.text = "\(cal.components(.CalendarUnitDay, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).day)"
@@ -89,7 +99,7 @@ class ViewController: UIViewController {
             } else {
                 maxDays.text = "\(maxTimer)"
             }
-            var timer = workoutInterval - cal.components(.CalendarUnitHour, fromDate: maxWorkout.date, toDate: NSDate(), options: nil).hour
+            var timer = cal.components(.CalendarUnitHour, fromDate: NSDate(), toDate: nextWorkoutDate, options: nil).hour
             if (timer <= 0) {
                 countDown.text = "NOW"
             } else {
@@ -157,7 +167,7 @@ class ViewController: UIViewController {
     
     func scheduler() -> Int {
         fetchLog()
-        if (hoursSinceLastWorkout > workoutInterval){
+        if (cal.components(.CalendarUnitHour, fromDate: NSDate(), toDate: nextWorkoutDate, options: nil).hour < 1){
             return maxWorkoutPushups + workoutIncrement
         } else {
             return maxWorkoutPushups

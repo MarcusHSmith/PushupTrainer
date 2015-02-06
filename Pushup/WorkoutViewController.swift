@@ -15,7 +15,6 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var accomplishedPushups: UITextField!
     @IBOutlet weak var complete: UIButton!
 
-    
     @IBOutlet weak var setOne: UITextField!
     @IBOutlet weak var setTwo: UITextField!
     @IBOutlet weak var setThree: UITextField!
@@ -32,6 +31,7 @@ class WorkoutViewController: UIViewController {
     var healthManager:HealthManager?
     var workouts = [HKWorkout]()
     var startDate = NSDate()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     var prescribed = 0
     var accomplished = 0
@@ -200,7 +200,9 @@ class WorkoutViewController: UIViewController {
         homeView.fetchLog()
         if (homeView.maxWorkoutPushups < accomplished){
             scheduleNotification()
+            defaults.setObject(timeToNextWorkout(), forKey: "nextWorkoutDate")
         }
+        
         homeView.saveNewItem(accomplished, prescribed: prescribed)
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
@@ -226,9 +228,26 @@ class WorkoutViewController: UIViewController {
         let notification = UILocalNotification()
         notification.alertBody = "Hey! Time to Workout"
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.fireDate = addHours(NSDate(), additionalHours: 46)
+        notification.fireDate = timeToNextWorkout()
         notification.repeatInterval = NSCalendarUnit.CalendarUnitDay
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func timeToNextWorkout() -> NSDate {
+        var date = NSDate()
+        var offGMT = NSTimeZone.localTimeZone().secondsFromGMT
+        date = date.dateByAddingTimeInterval(Double(offGMT))
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: NSDate())
+        let hour = components.hour
+        let minutes = components.minute
+        let subHour = hour - 7 // Notification for 7 AM
+        date = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: 2, toDate: date, options: nil)!
+        date = date.dateByAddingTimeInterval(60 * ( Double(-minutes)))
+        date = date.dateByAddingTimeInterval(60 * 60 * Double(-subHour))
+        //reset back to GMT
+        date = date.dateByAddingTimeInterval(Double(-offGMT))
+        return date
     }
     
     func addHours(date: NSDate, additionalHours: Int) -> NSDate {
