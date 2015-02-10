@@ -145,7 +145,7 @@ class WorkoutViewController: UIViewController {
             buttonFive.hidden = true
             accomplished += five
             refresh()
-            returnHome()
+            concludeWorkout()
         }
     }
 
@@ -184,10 +184,10 @@ class WorkoutViewController: UIViewController {
     
     @IBAction func CompletePressed(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI:", name: "WorkoutTime", object: nil)
-        returnHome()
+        concludeWorkout()
     }
     
-    func returnHome(){
+    func concludeWorkout(){
         // kiloCalories can't be set to nil ???
         self.healthManager?.savePushupWorkout(startDate, endDate: NSDate(), pushups: Double(accomplished), kiloCalories: 100, completion: { (success, error ) -> Void in
             if( success ) {
@@ -202,12 +202,41 @@ class WorkoutViewController: UIViewController {
             scheduleNotification()
             defaults.setObject(timeToNextWorkout(), forKey: "nextWorkoutDate")
         }
-        
         homeView.saveNewItem(accomplished, prescribed: prescribed)
+        
+        var time = NSDate()
+        if var next: AnyObject = defaults.objectForKey("nextWorkoutDate"){
+            time = next as NSDate
+        }
+        
+        
+        
+        
+        
+        var offGMT = NSTimeZone.localTimeZone().secondsFromGMT
+        var nextWorkout = time.dateByAddingTimeInterval(Double(offGMT))
+        let dateString = dateformatterDate(nextWorkout)
+        println("date: \(dateString)")
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfWeekString = dateFormatter.stringFromDate(nextWorkout)
+        println("date: \(dayOfWeekString)")
+        var alert = UIAlertController(title: "Workout Completed!", message: "Next workout is on \(dayOfWeekString)", preferredStyle: UIAlertControllerStyle.Alert)
+        var okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            self.returnHome()
+        }
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    func returnHome(){
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let home = storyBoard.instantiateViewControllerWithIdentifier("home") as ViewController
         self.presentViewController(home, animated: false, completion: nil)
     }
+    
+
+    
     
     func readHealthKitData() {
         healthManager?.readPushupWorkOuts({ (results, error) -> Void in
@@ -241,7 +270,7 @@ class WorkoutViewController: UIViewController {
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: NSDate())
         let hour = components.hour
         let minutes = components.minute
-        let subHour = hour - 7 // Notification for 7 AM
+        let subHour = hour - 9 // Notification for 9 AM
         date = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: 2, toDate: date, options: nil)!
         date = date.dateByAddingTimeInterval(60 * ( Double(-minutes)))
         date = date.dateByAddingTimeInterval(60 * 60 * Double(-subHour))
@@ -256,5 +285,14 @@ class WorkoutViewController: UIViewController {
         let futureDate = NSCalendar.currentCalendar()
             .dateByAddingComponents(components, toDate: date, options: NSCalendarOptions(0))
         return futureDate!
+    }
+    
+    func dateformatterDate(date: NSDate) -> NSString {
+        var dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+        
+        return dateFormatter.stringFromDate(date)
+        
     }
 }
