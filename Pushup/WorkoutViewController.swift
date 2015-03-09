@@ -201,6 +201,8 @@ class WorkoutViewController: UIViewController {
         if (homeView.maxWorkoutPushups < accomplished){
             scheduleNotification()
             defaults.setObject(timeToNextWorkout(), forKey: "nextWorkoutDate")
+        } else {
+            defaults.setObject(timeToRepeatWorkout(), forKey: "nextWorkoutDate")
         }
         homeView.saveNewItem(accomplished, prescribed: prescribed)
         
@@ -209,11 +211,8 @@ class WorkoutViewController: UIViewController {
             time = next as NSDate
         }
         
-        
-        
-        
-        
         var offGMT = NSTimeZone.localTimeZone().secondsFromGMT
+        // Next workout date
         var nextWorkout = time.dateByAddingTimeInterval(Double(offGMT))
         let dateString = dateformatterDate(nextWorkout)
         println("date: \(dateString)")
@@ -272,6 +271,23 @@ class WorkoutViewController: UIViewController {
         let minutes = components.minute
         let subHour = hour - 9 // Notification for 9 AM
         date = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: 2, toDate: date, options: nil)!
+        date = date.dateByAddingTimeInterval(60 * ( Double(-minutes)))
+        date = date.dateByAddingTimeInterval(60 * 60 * Double(-subHour))
+        //reset back to GMT
+        date = date.dateByAddingTimeInterval(Double(-offGMT))
+        return date
+    }
+    
+    func timeToRepeatWorkout() -> NSDate {
+        var date = NSDate()
+        var offGMT = NSTimeZone.localTimeZone().secondsFromGMT
+        date = date.dateByAddingTimeInterval(Double(offGMT))
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: NSDate())
+        let hour = components.hour
+        let minutes = components.minute
+        let subHour = hour - 9 // Notification for 9 AM
+        date = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: 1, toDate: date, options: nil)!
         date = date.dateByAddingTimeInterval(60 * ( Double(-minutes)))
         date = date.dateByAddingTimeInterval(60 * 60 * Double(-subHour))
         //reset back to GMT
