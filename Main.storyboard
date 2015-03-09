@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -365,7 +365,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="complete" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-VL-dAO">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="complete" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-VL-dAO">
                                 <rect key="frame" x="16" y="617" width="343" height="30"/>
                                 <state key="normal" title="Partially Complete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -512,12 +512,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="98w-pg-bUg" firstAttribute="top" secondItem="wbX-VL-dAO" secondAttribute="bottom" constant="20" id="0L5-WE-Vmc"/>
                             <constraint firstItem="NfU-CA-PnD" firstAttribute="leading" secondItem="tmW-lW-HHC" secondAttribute="trailing" constant="8" id="0YM-r0-a1z"/>
                             <constraint firstItem="K1g-Py-gr2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="trL-Bn-vyq" secondAttribute="leadingMargin" priority="998" constant="10" id="2Da-cT-mlR"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tmW-lW-HHC" secondAttribute="bottom" priority="999" constant="110" id="3cj-8N-2yN"/>
                             <constraint firstItem="NfU-CA-PnD" firstAttribute="leading" secondItem="tmW-lW-HHC" secondAttribute="trailing" constant="8" id="47L-iU-HDn"/>
-                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zdb-1v-JkK" secondAttribute="bottom" priority="999" constant="150" id="57Y-f0-Ntk"/>
-                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NfU-CA-PnD" secondAttribute="bottom" priority="999" constant="110" id="73V-Ga-UmB"/>
+                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zdb-1v-JkK" secondAttribute="bottom" priority="500" constant="150" id="57Y-f0-Ntk"/>
+                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NfU-CA-PnD" secondAttribute="bottom" priority="500" constant="110" id="73V-Ga-UmB"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="knT-vV-z5u" secondAttribute="bottom" priority="999" constant="150" id="7bG-XA-gP0"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4Lt-YG-rfx" secondAttribute="bottom" priority="999" constant="110" id="8Er-jc-Og5"/>
                             <constraint firstItem="sj8-mg-j6k" firstAttribute="leading" secondItem="knT-vV-z5u" secondAttribute="trailing" constant="8" id="8ff-jL-f3t"/>
@@ -534,6 +535,7 @@
                             <constraint firstItem="10j-eY-hFv" firstAttribute="leading" secondItem="hgF-Bf-bZR" secondAttribute="trailing" constant="8" id="NfP-ji-uKl"/>
                             <constraint firstItem="P7b-l8-ucO" firstAttribute="top" secondItem="bfZ-zc-YLn" secondAttribute="bottom" constant="8" id="NjU-VJ-MbS"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sj8-mg-j6k" secondAttribute="bottom" priority="999" constant="110" id="RcO-QL-62o"/>
+                            <constraint firstItem="sj8-mg-j6k" firstAttribute="centerY" secondItem="NfU-CA-PnD" secondAttribute="centerY" id="SYD-nB-p0a"/>
                             <constraint firstAttribute="centerX" secondItem="P7b-l8-ucO" secondAttribute="centerX" id="XxM-s0-RaU"/>
                             <constraint firstAttribute="centerX" secondItem="zdb-1v-JkK" secondAttribute="centerX" id="ZNo-Qt-C7T"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CFr-aY-4Qi" secondAttribute="bottom" priority="999" constant="150" id="Zt1-hK-YJ0"/>
@@ -542,18 +544,38 @@
                             <constraint firstItem="tmW-lW-HHC" firstAttribute="leading" secondItem="K1g-Py-gr2" secondAttribute="trailing" constant="8" id="dKy-Uy-VRI"/>
                             <constraint firstItem="zdb-1v-JkK" firstAttribute="leading" secondItem="tmW-lW-HHC" secondAttribute="trailing" constant="8" id="dle-ev-s7V"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="leading" secondItem="trL-Bn-vyq" secondAttribute="leadingMargin" id="eOs-ic-nbZ"/>
+                            <constraint firstItem="sj8-mg-j6k" firstAttribute="centerY" secondItem="hgF-Bf-bZR" secondAttribute="centerY" id="eR6-32-qc4"/>
                             <constraint firstAttribute="centerX" secondItem="bfZ-zc-YLn" secondAttribute="centerX" id="en6-JZ-1hJ"/>
                             <constraint firstAttribute="centerX" secondItem="TMG-zY-Tzg" secondAttribute="centerX" id="fI2-i2-LbZ"/>
                             <constraint firstAttribute="centerX" secondItem="shn-TM-Ikb" secondAttribute="centerX" id="fiT-U1-bgp"/>
+                            <constraint firstItem="K1g-Py-gr2" firstAttribute="centerY" secondItem="CFr-aY-4Qi" secondAttribute="centerY" id="gMV-dU-GdG"/>
+                            <constraint firstItem="K1g-Py-gr2" firstAttribute="centerY" secondItem="zdb-1v-JkK" secondAttribute="centerY" id="oYS-hk-bgc"/>
                             <constraint firstItem="wbX-VL-dAO" firstAttribute="trailing" secondItem="trL-Bn-vyq" secondAttribute="trailingMargin" id="pPL-9v-f44"/>
                             <constraint firstItem="tmW-lW-HHC" firstAttribute="leading" secondItem="4Lt-YG-rfx" secondAttribute="trailing" constant="8" id="qWN-Y8-PU9"/>
+                            <constraint firstItem="sj8-mg-j6k" firstAttribute="centerY" secondItem="4Lt-YG-rfx" secondAttribute="centerY" id="rQ8-Ps-8yQ"/>
                             <constraint firstItem="hgF-Bf-bZR" firstAttribute="leading" secondItem="zdb-1v-JkK" secondAttribute="trailing" constant="8" id="sG9-i5-BRP"/>
-                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="10j-eY-hFv" secondAttribute="bottom" priority="999" constant="150" id="t5F-K2-6n9"/>
+                            <constraint firstItem="wbX-VL-dAO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="10j-eY-hFv" secondAttribute="bottom" priority="500" constant="150" id="t5F-K2-6n9"/>
+                            <constraint firstItem="TMG-zY-Tzg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2gh-Dm-g2t" secondAttribute="bottom" priority="700" constant="75" id="tSc-Om-tQe"/>
                             <constraint firstItem="hgF-Bf-bZR" firstAttribute="leading" secondItem="NfU-CA-PnD" secondAttribute="trailing" constant="8" id="tzs-Sp-1MW"/>
+                            <constraint firstItem="sj8-mg-j6k" firstAttribute="centerY" secondItem="tmW-lW-HHC" secondAttribute="centerY" id="vYs-UJ-haV"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="10j-eY-hFv" secondAttribute="trailing" priority="998" constant="10" id="wBS-Pi-Z8o"/>
                             <constraint firstItem="knT-vV-z5u" firstAttribute="leading" secondItem="NfU-CA-PnD" secondAttribute="trailing" constant="8" id="wgn-rf-Fk5"/>
+                            <constraint firstItem="K1g-Py-gr2" firstAttribute="centerY" secondItem="10j-eY-hFv" secondAttribute="centerY" id="wiA-1y-aLb"/>
+                            <constraint firstItem="K1g-Py-gr2" firstAttribute="centerY" secondItem="knT-vV-z5u" secondAttribute="centerY" id="wyR-Yi-XJn"/>
                             <constraint firstItem="bfZ-zc-YLn" firstAttribute="top" secondItem="shn-TM-Ikb" secondAttribute="bottom" constant="8" id="x3d-iR-869"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3cj-8N-2yN"/>
+                                <exclude reference="7bG-XA-gP0"/>
+                                <exclude reference="8Er-jc-Og5"/>
+                                <exclude reference="8fy-Ps-Csm"/>
+                                <exclude reference="BfW-ct-kfm"/>
+                                <exclude reference="RcO-QL-62o"/>
+                                <exclude reference="Zt1-hK-YJ0"/>
+                                <exclude reference="t5F-K2-6n9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
